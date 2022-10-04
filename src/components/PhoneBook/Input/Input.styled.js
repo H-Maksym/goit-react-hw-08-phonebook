@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const LabelStyled = styled.label`
   display: block;
+  width: 100%;
   color: ${p => p.theme.colors.form.formText};
-  font-size: ${p => p.theme.fontSizes.xl};
+  font-size: ${p => p.theme.fontSizes.l};
   line-height: ${p => p.theme.lineHeights.form};
   text-transform: ${p => p.theme.textTransform.cap};
   font-weight: ${p => p.theme.fontWeights.medium};
@@ -11,6 +12,8 @@ export const LabelStyled = styled.label`
 
 export const InputStyled = styled.input`
   display: block;
+  width: 100%;
+  box-sizing: border-box;
   padding: ${p =>
     `${p.theme.space[3]}px ` +
     `${p.theme.space[2] * 3}px ` +
@@ -18,7 +21,7 @@ export const InputStyled = styled.input`
     `${p.theme.space[2] * 3}px`};
 
   min-width: 100%;
-  font-size: ${p => p.theme.fontSizes.l};
+  font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.text};
   border-color: ${p => p.theme.colors.button.inputBorder};
   border-radius: ${p => p.theme.radii.lg};

@@ -1,82 +1,57 @@
-import { useEffect } from 'react';
-import useToggleModal from 'hooks/toggleModal';
+import { useEffect /* , lazy */ } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Home from 'pages/Home';
+import Register from 'pages/Register';
+import Login from 'pages/Login';
+import UserMenu from 'pages/UserMenu';
+import { RestrictedRoute } from 'components/App/RestricrtedRoute';
+import { PrivateRoute } from 'components/App/PrivateRoute';
+import useAuth from 'hooks/useAuth';
+import { refreshUser } from 'redux/auth/operations';
 
-//* Components
-import Title from 'components/PhoneBook/Title';
-import ContactForm from 'components/PhoneBook/ContactForm';
-import Filter from 'components/PhoneBook/Filter';
-import ContactList from 'components/PhoneBook/ContactList';
-import Notification from 'components/PhoneBook/Notification';
-import Box from 'components/PhoneBook/Box';
-import Modal from 'components/PhoneBook/Modal';
-import AddContact from 'components/PhoneBook/AddContact';
-import Loader from 'components/Loader';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectIsLoading, selectError } from 'redux/selectors';
-import { fetchContacts } from 'redux/operation';
+// const Home = lazy(() => import('pages/Home'));
+// const Login = lazy(() => import('pages/Login'));
+// const Register = lazy(() => import('pages/Register'));
+// const UserMenu = lazy(() => import('pages/UserMenu'));
 
 export default function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  const { isOpen, openModal, closeModal, handleKeyDown, handleBackdropClick } =
-    useToggleModal();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <>
-      <Box
-        mx="auto"
-        px={15}
-        py={0}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        width={450}
-        as="section"
-      >
-        <h1>React</h1>
-        <Title>Phone-Book</Title>
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <RestrictedRoute redirectTo="/usermenu" component={<Home />} />
+        }
+      />
+      <Route
+        path="login"
+        element={
+          <RestrictedRoute redirectTo="/usermenu" component={<Login />} />
+        }
+      />
 
-        <AddContact toggleModal={() => openModal()} />
+      <Route
+        path="register"
+        element={
+          <RestrictedRoute redirectTo="/usermenu" component={<Register />} />
+        }
+      />
 
-        {isOpen && (
-          <Modal
-            closeModal={closeModal}
-            handleKeyDown={handleKeyDown}
-            handleBackdropClick={handleBackdropClick}
-          >
-            <ContactForm title="Fill in the contact details" />
-          </Modal>
-        )}
-      </Box>
-      {error && <div>Error...</div>}
-      {isLoading && <Loader />}
-      <Box
-        mx="auto"
-        px={15}
-        py={0}
-        display="flex"
-        flexDirection="column"
-        width={450}
-        as="section"
-      >
-        <Title>Contacts</Title>
-
-        {contacts.length > 0 ? (
-          <>
-            <Filter name="filter" />
-            <ContactList />
-          </>
-        ) : (
-          <Notification message="There are no contacts" />
-        )}
-      </Box>
-    </>
+      <Route
+        path="usermenu"
+        element={<PrivateRoute redirectTo="/" component={<UserMenu />} />}
+      />
+      {/* <Ro`ute path="Contacts" element={<Contacts />} /> */}
+    </Routes>
   );
 }

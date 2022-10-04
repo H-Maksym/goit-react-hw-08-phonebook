@@ -4,9 +4,9 @@ import { StyledFilterLabel, StyledFilterInput } from './Filter.styled';
 import ButtonIcon from 'components/PhoneBook/ButtonIcon';
 import { BsSearch } from 'react-icons/bs';
 import Box from 'components/PhoneBook/Box';
-import { changeFilterValue } from 'redux/slice/contactsSlice';
+import { changeFilterValue } from 'redux/contacts/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilterValue } from 'redux/selectors';
+import { selectFilterValue } from 'redux/contacts/selectors';
 
 export default function Filter({ title = '', name }) {
   // !The form also has its own event response logic.

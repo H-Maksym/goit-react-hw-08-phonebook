@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from 'redux/operation';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+} from 'redux/contacts/operations';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { notifyConfigs } from 'config/notifyConfig';
@@ -52,7 +56,6 @@ const contactsSlice = createSlice({
     [addContact.rejected]: handleRejected,
 
     //delContact
-
     [deleteContact.pending]: handlePending,
     [deleteContact.fulfilled](state, action) {
       state.isLoading = false;
@@ -60,6 +63,7 @@ const contactsSlice = createSlice({
       state.items = state.items.filter(
         contact => contact.id !== action.payload.id
       );
+
       Notify.info(
         `Contact  ${action.payload.name} deleted from phonebook`,
         notifyConfigs

@@ -10,7 +10,7 @@ export const theme = {
     text: {
       sectionTitle: '#FFAC1C',
       primaryText: '#414141',
-      secondaryText: '',
+      secondaryText: '#41414145',
       accent: '#2ee59d',
     },
 
@@ -26,10 +26,12 @@ export const theme = {
     },
 
     form: {
-      formBorder: ' teal',
+      formBorder: '#2ee59d33',
       formTitle: '#212121',
       formText: '#414141',
       formPlaceholder: '',
+      formInputBorder: '#2ee59d80',
+      formErrorMessage: 'orange',
     },
 
     searchInput: '',
@@ -50,6 +52,7 @@ export const theme = {
   },
 
   fontSizes: {
+    xxs: '8px',
     xs: '12px',
     s: '14px',
     m: '16px',
@@ -79,12 +82,12 @@ export const theme = {
     body: 1.5,
     form: 1.75,
     sectionTitle: 1.75,
-    text: 1.25,
+    text: 1.17,
   },
 
   borders: {
     none: 'none',
-    normal: '1px solid',
+    normal: ' 2px solid',
   },
 
   radii: {
@@ -94,5 +97,8 @@ export const theme = {
     lg: '16px',
     xl: '30px',
     round: '50%',
+  },
+  animation: {
+    cubic: '250 ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
 };

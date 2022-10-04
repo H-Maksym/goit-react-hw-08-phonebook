@@ -8,9 +8,16 @@ export default function Button({
   disabled = false,
   onClick,
   children,
+  style,
 }) {
   return (
-    <StyledButton type={type} disabled={disabled} onClick={onClick} id={id}>
+    <StyledButton
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      id={id}
+      style={style}
+    >
       {children}
     </StyledButton>
   );
@@ -22,4 +29,5 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
+  style: PropTypes.object,
 };

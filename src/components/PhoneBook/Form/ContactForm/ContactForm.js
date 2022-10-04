@@ -1,15 +1,24 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operation';
-import { selectContacts, selectIsLoading } from 'redux/selectors';
+import { addContact } from 'redux/contacts/operations';
+import { selectContacts, selectIsLoading } from 'redux/contacts/selectors';
 import { nanoid } from '@reduxjs/toolkit';
 import PropTypes from 'prop-types';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { notifyConfigs } from 'config/notifyConfig';
 
-import { FormContact } from './ContactForm.styled';
-import Input from 'components/PhoneBook/Input';
+import Box from 'components/PhoneBook/Box';
+
+import {
+  FormContact,
+  LabelStyled,
+  StyledFormLabel,
+  InputStyled,
+  StyledInputIconName,
+  StyledInputIconNumber,
+} from './ContactForm.styled';
+
 import Button from 'components/PhoneBook/Button';
 
 export default function ContactForm({ title }) {
@@ -57,24 +66,35 @@ export default function ContactForm({ title }) {
   return (
     <FormContact onSubmit={handleSubmit}>
       {title && <h3>{title}</h3>}
-      <Input
-        type="text"
-        titleInput="name"
-        name="name"
-        placeholder="Enter your name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        handleInputChange={handleInputChange}
-      />
-      <Input
-        type="tel"
-        titleInput="number"
-        name="number"
-        placeholder="Enter your number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        handleInputChange={handleInputChange}
-      />
+      <LabelStyled>
+        <StyledFormLabel>Name</StyledFormLabel>
+        <Box position="relative">
+          <InputStyled
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            onChange={handleInputChange}
+          />
+          <StyledInputIconName />
+        </Box>
+      </LabelStyled>
+      <LabelStyled>
+        <StyledFormLabel>Number</StyledFormLabel>
+        <Box position="relative">
+          <InputStyled
+            type="tel"
+            titleInput="number"
+            name="number"
+            placeholder="Enter your number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            onChange={handleInputChange}
+          />
+          <StyledInputIconNumber />
+        </Box>
+      </LabelStyled>
       <Button type="submit">Add contact</Button>
     </FormContact>
   );

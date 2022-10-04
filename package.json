@@ -5,8 +5,13 @@
   "homepage": "https://h-maksym.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.6",
+    "@mui/styled-engine-sc": "^5.10.6",
+    "@mui/system": "^5.10.7",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
+    "formik": "^2.2.9",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
@@ -14,12 +19,14 @@
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "redux-persist": "^6.0.0",
-    "styled-components": "^5.3.5",
+    "styled-components": "^5.3.6",
     "styled-system": "^5.1.5",
     "theme-ui": "^0.14.7",
-    "web-vitals": "^2.1.3"
+    "web-vitals": "^2.1.3",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

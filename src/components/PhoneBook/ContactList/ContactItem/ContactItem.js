@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Button from 'components/PhoneBook/Button';
 import { StyledTextList } from './ContactItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operation';
-import { selectIsLoading } from 'redux/selectors';
+import { deleteContact } from 'redux/contacts/operations';
+import { selectIsLoading } from 'redux/contacts/selectors';
 
 export default function ContactItem({ contact }) {
   const dispatch = useDispatch();
@@ -14,8 +14,7 @@ export default function ContactItem({ contact }) {
     if (isLoading) {
       return;
     }
-
-    dispatch(deleteContact(contact.id));
+    dispatch(deleteContact(contact));
   }
 
   return (

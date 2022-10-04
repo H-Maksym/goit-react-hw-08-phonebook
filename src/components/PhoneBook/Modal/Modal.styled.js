@@ -15,8 +15,9 @@ export const ModalContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   /* min-height: 300px; */
-  width: ${p => `${p.theme.space[7] * 3}px`};
-  /* padding: 12px; */
+  /* width: 540px; */
+  min-width: ${p => `${p.theme.space[7] * 3}px`};
+  padding: 12px;
   background-color: ${p => p.theme.colors.white};
   border: ${p => p.theme.borders.normal + p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.lg};
